@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_projeto/user_inherited.dart';
 
 class FormCadastro extends StatefulWidget {
   const FormCadastro({super.key, required this.formCadastroContext});
@@ -62,7 +63,8 @@ class _FormCadastroState extends State<FormCadastro> {
                   const Icon(
                     Icons.person,
                     color: Colors.white,
-                    size: 60,),
+                    size: 60,
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: TextFormField(
@@ -116,6 +118,10 @@ class _FormCadastroState extends State<FormCadastro> {
                   TextButton.icon(
                       onPressed: () {
                         if (_cadastroKey.currentState!.validate()) {
+                          UserInherited.of(widget.formCadastroContext).newUser(
+                            usuarioController.text,
+                            cadastroSenhaController.text,);
+                          UserInherited.of(widget.formCadastroContext).showUserList(context);
                           Navigator.pop(context);
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
